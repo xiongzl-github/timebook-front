@@ -3,8 +3,7 @@ import types from "../types.js";
 
 const state = {
     home: {
-        tabs: [],
-        tabName: "",
+        activeName: "home",
     }
 };
 

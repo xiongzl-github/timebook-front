@@ -22,6 +22,10 @@ let webConfig = {
                 use: ['vue-style-loader', 'css-loader', 'less-loader']
             },
             {
+                test: /\.scss$/,
+                use: ['vue-style-loader', 'css-loader', 'sass-loader']
+            },
+            {
                 test: /\.css$/,
                 use: ['vue-style-loader', 'css-loader']
             },
@@ -37,17 +41,24 @@ let webConfig = {
             },
             {
                 test: /\.vue$/,
-                use: {
-                    loader: 'vue-loader',
-                    options: {
-                        extractCSS: true,
-                        loaders: {
-                            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-                            scss: 'vue-style-loader!css-loader!sass-loader',
-                            less: 'vue-style-loader!css-loader!less-loader'
+                use: [{
+                        loader: 'vue-loader',
+                        options: {
+                            extractCSS: true,
+                            loaders: {
+                                sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
+                                scss: 'vue-style-loader!css-loader!sass-loader',
+                                less: 'vue-style-loader!css-loader!less-loader'
+                            }
+                        }
+                    },
+                    {
+                        loader: 'iview-loader',
+                        options: {
+                            prefix: false
                         }
                     }
-                }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -112,6 +123,11 @@ let webConfig = {
             'vue$': 'vue/dist/vue.esm.js'
         },
         extensions: ['.js', '.vue', '.json', '.css']
+    },
+    resolveLoader: {
+        alias: {
+            'scss-loader': 'sass-loader',
+        }
     },
     target: 'web'
 }

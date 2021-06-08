@@ -1,12 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 import Home from "../components/Home.vue";
-// import TargetSetting from "../components/TargetSetting.vue";
-// import TargetPlanning from "../components/TargetPlanning.vue"
-// import TargetAnalysis from "../components/TargetAnalysis.vue"
-import TodoList from "../components/TodoList.vue";
-import TimeRecord from "../components/TimeRecord.vue";
-import Dashboard from "../components/Dashboard.vue";
+import CTimeBook from "../components/CTimeBook.vue";
+import CHome from "../components/CHome.vue";
 
 Vue.use(Router)
 
@@ -17,33 +13,30 @@ export default new Router({
         //       name: "Login",
         //       component: Login
         //   },
-        {
-            path: '',
-            redirect: '/home'
-        },
+        // {
+        //     path: '/',
+        //     name: "Home",
+        //     component: Home
+        // },
         {
             path: "/home",
             component: Home,
-            children: [{
-                    path: "timeRecord",
-                    name: "TimeRecord",
-                    component: TimeRecord
+            children: [
+                {
+                    path: "",
+                    name: "home",
+                    component: CHome
                 },
                 {
-                    path: "todoList",
-                    name: "TodoList",
-                    component: TodoList
-                },
-                {
-                    path: "dashboard",
-                    name: "Dashboard",
-                    component: Dashboard
-                },
+                    path: 'timebook',
+                    name: "TimeBook",
+                    component: CTimeBook
+                }
             ]
         },
         {
             path: "*",
-            redirect: "/"
+            redirect: "/home"
         }
     ]
 })

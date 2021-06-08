@@ -1,15 +1,7 @@
 <template>
     <div style="margin:0 auto;width:100%;height:100%">
-        <div id="header" style="width:100%;height:64px;line-height:64px;background-color:#515a6e">
-            <CHeader></CHeader>
-        </div>
-        <router-view></router-view>
-        <!-- <div margin: 0 auto;width:1400px;height:880px;>
-            <router-view></router-view>
-        </div> -->
-        
-        <!-- <div style="margin: 0 auto;width:1400px;height:150px;">
-            <div id="motto" style="width:1400px;height:150px;overflow:auto;float:left;">
+        <div style="margin: 0 auto;width:1400px;height:150px;">
+            <div id="motto" style="width:1400px;height:150px;">
                 <CMotto></CMotto>
             </div>
         </div>
@@ -29,7 +21,7 @@
             <div id="habit" style="width:280px;height:730px;overflow:auto;float:left;display:inline-block">
                 <CHabit></CHabit>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 <script>

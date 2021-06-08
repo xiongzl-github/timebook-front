@@ -35,6 +35,10 @@ let rendererConfig = {
                 use: ['vue-style-loader', 'css-loader', 'less-loader']
             },
             {
+                test: /\.scss$/,
+                use: ['vue-style-loader', 'css-loader', 'sass-loader']
+            },
+            {
                 test: /\.css$/,
                 use: ['vue-style-loader', 'css-loader']
             },
@@ -53,17 +57,24 @@ let rendererConfig = {
             },
             {
                 test: /\.vue$/,
-                use: {
-                    loader: 'vue-loader',
-                    options: {
-                        extractCSS: process.env.NODE_ENV === 'production',
-                        loaders: {
-                            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-                            scss: 'vue-style-loader!css-loader!sass-loader',
-                            less: 'vue-style-loader!css-loader!less-loader'
+                use: [{
+                        loader: 'vue-loader',
+                        options: {
+                            extractCSS: process.env.NODE_ENV === 'production',
+                            loaders: {
+                                sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
+                                scss: 'vue-style-loader!css-loader!sass-loader',
+                                less: 'vue-style-loader!css-loader!less-loader'
+                            }
+                        }
+                    },
+                    {
+                        loader: 'iview-loader',
+                        options: {
+                            prefix: false
                         }
                     }
-                }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -123,8 +134,7 @@ let rendererConfig = {
                 removeComments: true
             },
             nodeModules: process.env.NODE_ENV !== 'production' ?
-                path.resolve(__dirname, '../node_modules') :
-                false
+                path.resolve(__dirname, '../node_modules') : false
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
@@ -140,6 +150,11 @@ let rendererConfig = {
             'vue$': 'vue/dist/vue.esm.js'
         },
         extensions: ['.js', '.vue', '.json', '.css', '.node']
+    },
+    resolveLoader: {
+        alias: {
+            'scss-loader': 'sass-loader',
+        }
     },
     target: 'electron-renderer'
 }
